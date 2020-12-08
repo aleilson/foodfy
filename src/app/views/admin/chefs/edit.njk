@@ -1,0 +1,25 @@
+{% extends 'admin/layout.njk' %}
+
+{% block content %}
+<section class="recipe">
+  <div class="container">
+    <div class="recipe__create">
+      <form id="form-delete" method="POST" action="/admin/chefs?_method=DELETE">
+        <div class="recipe__edit--info">
+          <button type="submit">Deletar</button>
+          <input type="hidden" name="id" value="{{chef.id}}">
+        </div>
+      </form>
+      <form method="POST" action="/admin/chefs?_method=PUT" enctype="multipart/form-data">
+        <div class="recipe__create--info">
+          <h2>Editando chef</h2>
+          <button type="submit">Salvar chef</button>
+        </div>
+        {% include 'admin/chefs/fields.njk' %}
+
+        <input type="hidden" name="id" value={{chef.id}}>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock content %}

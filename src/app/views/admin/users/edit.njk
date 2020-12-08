@@ -1,0 +1,29 @@
+{% extends "admin/layout.njk" %}
+
+{% block content %}
+
+    <section class="edit-users">
+        <div class="container">
+            <div class="card card-edit-user">
+
+                <form id="form-delete" action="/admin/users?_method=DELETE" method="POST">
+                    <input type="hidden" name="id" value={{user.id}}>
+                    <button type="submit">Deletar</button>
+                </form>
+
+                <form  class="form-user" action="/admin/users?_method=PUT" method="POST">
+                    <div class="box_section">
+                        <h3>Atualizando Usuário</h3>
+                        <button type="submit">Salvar</button>
+                    </div>
+                    <input type="hidden" name="id" value={{user.id}}>
+
+                    {% include 'admin/users/fields.njk' %}
+
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+{% endblock  content %}

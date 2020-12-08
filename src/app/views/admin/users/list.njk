@@ -1,0 +1,58 @@
+{% extends "admin/layout.njk" %}
+
+{% block head %}
+    <title>Usuários - Foodfy</title>
+{% endblock head %}
+
+{% block content %}
+    <section class="listusers">
+        <div class="container">
+            <div class="listusers__header">
+
+                {% if session.adm == true %}
+                    <h2>Usuários</h2>
+
+                    <a class="button" href="/admin/users/create">Novo</a>
+                {% else %}
+                    <h2>Usuários</h2>
+                {% endif %}
+            </div>
+
+            <div class="listusers__body">
+                {% for user in users %}
+                    <div class="listusers__body--box">
+                        <h3>{{user.name}}</h3>
+                        <p>{{user.email}}</p>
+
+                        {% if session.adm == true %}
+                        <div class="listusers__body--box-button listusers__body--box-buttonlist">
+                            <a href="/admin/users/{{user.id}}/edit">Editar</a>
+                        
+                            {% if session.userId !== user.id %}
+                            <form id="list-delete" action="/admin/users?_method=DELETE" method="POST">
+                                <input type="hidden" name="id" value={{user.id}}>
+                                <button type="submit">Deletar</button>
+                            </form>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+                        <input type="hidden" name="id" value={{user.id}}>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    <script>
+        const formDelete = document.querySelector('#list-delete')
+        formDelete.addEventListener('submit', function (event) {
+            const confirmation = confirm("Deseja realmente deletar?")
+
+            if (!confirmation) {
+                event.preventDefault()
+            }
+        })
+    </script>
+{% endblock  content %}

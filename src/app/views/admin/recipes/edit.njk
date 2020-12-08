@@ -1,0 +1,155 @@
+{% extends 'admin/layout.njk' %}
+
+{% block content %}
+<section class="recipe">
+  <div class="container">
+    <div class="recipe__create">
+      <form id="form-delete" method="POST" action="/admin/recipes?_method=DELETE">
+        <div class="recipe__edit--info">
+          <button type="submit">Deletar</button>
+          <input type="hidden" name="id" value="{{recipe.id}}">
+        </div>
+      </form>
+      <form method="POST" action="/admin/recipes?_method=PUT" enctype="multipart/form-data">
+        <div class="recipe__edit--info">
+          <h2>Editando receita</h2>
+          <button type="submit">Salvar receita</button>
+        </div>
+
+        <div class="item">
+          <div>Imagem da receita</div>
+          <div>
+            <div id="photos-upload">
+              <input 
+                id="photos-input"
+                type="file" 
+                name="photos"
+                multiple 
+                accept="image/*"
+                onchange="PhotosUpload.handleFileInput(event)"
+              >
+              <i class="material-icons">add</i>
+            </div>
+            <div id="photos-preview">
+              {% if recipeFiles %}
+                {% for image in recipeFiles %}
+                  <div class="photo" id="{{image.id}}">
+                    <img src="{{image.src}}" alt="{{image.name}}">
+                    <i class="material-icons"
+                    onclick="PhotosUpload.removeOldPhoto(event)"
+                    >
+                      close
+                    </i>
+                  </div>
+                {% endfor %}
+                <input type="hidden" name="removed_files">
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div>Título da receita</div>
+          <div>
+            <input type="text" name="title" value="{{recipe.title}}">
+          </div>
+        </div>
+
+        <div class="item">
+          <div>Autor da receita</div>
+          <div>
+            <select name="chef">
+              {% for chef in chefsOption %}
+                <option value="{{chef.id}}" {% if recipe.chef_id == chef.id %}selected{% endif %}>{{chef.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="item">
+          <div>Ingredientes</div>
+          <div id="ingredients">
+            {% for ingredient in recipe.ingredients %}
+            <div class="ingredient">
+              <input type="text" name="ingredients[]" value="{{ingredient}}" />
+            </div>
+            {% endfor %}
+          </div>
+          <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
+        </div>
+
+        <div class="item">
+          <div>Modo de preparo</div>
+          <div id="preparation">
+            {% for preparation in recipe.preparation %}
+            <div class="preparation">
+              <input type="text" name="preparation[]" value="{{preparation}}" />
+            </div>
+            {% endfor %}
+          </div>
+          <button type="button" class="add-preparation">Adicionar novo passo</button>
+        </div>
+
+        <div class="item">
+          <div>Informações adicionais</div>
+          <div>
+            <textarea type="text" name="information" value="{{recipe.information}}" rows="4"
+              cols="50">{{recipe.information}}</textarea>
+          </div>
+        </div>
+        <input type="hidden" name="id" value={{recipe.id}}>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  function addIngredient() {
+    const ingredients = document.querySelector("#ingredients");
+    const fieldContainer = document.querySelectorAll(".ingredient");
+
+    // Realiza um clone do último ingrediente adicionado
+    const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true);
+
+    // Não adiciona um novo input se o último tem um valor vazio
+    if (newField.children[0].value == "") return false;
+
+    // Deixa o valor do input vazio
+    newField.children[0].value = "";
+    ingredients.appendChild(newField);
+  }
+
+  document
+    .querySelector(".add-ingredient")
+    .addEventListener("click", addIngredient);
+
+
+  function addPreparation() {
+    const preparation = document.querySelector("#preparation");
+    const fieldContainer = document.querySelectorAll(".preparation");
+
+    // Realiza um clone do último preparação adicionado
+    const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true);
+
+    // Não adiciona um novo input se o último tem um valor vazio
+    if (newField.children[0].value == "") return false;
+
+    // Deixa o valor do input vazio
+    newField.children[0].value = "";
+    preparation.appendChild(newField);
+  }
+
+  document
+    .querySelector(".add-preparation")
+    .addEventListener("click", addPreparation);
+
+  const formDelete = document.querySelector('#form-delete')
+  formDelete.addEventListener('submit', function (event) {
+    const confirmation = confirm("Deseja realmente deletar?")
+
+    if (!confirmation) {
+      event.preventDefault()
+    }
+  })
+</script>
+{% endblock content %}

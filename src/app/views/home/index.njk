@@ -1,0 +1,24 @@
+{% extends "layout.njk" %}
+{% import 'parts/section-recipes.njk' as section %}
+{% block head %}
+    <title>Home - Foodfy</title>
+{% endblock %}
+
+{% block content %}
+    <section class="banner">
+        <div class="container">
+            <div class="banner__thumb">
+                <div class="banner__thumb--infos">
+                    <h2 class="banner__thumb--infos-title">As melhores receitas</h2>
+                    <p class="banner__thumb--infos-description">Aprenda a construir os melhores pratos com receitas criadas
+                        por profissionais do mundo inteiro.</p>
+                </div>
+                <figure class="banner__thumb--img">
+                    <img src="assets/chef.png" alt="Chef Foodfy">
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    {{section.recipes('Receitas', recipes, recipeFiles)}}
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'admin/layout.njk' %}
+
+{% block content %}
+<section class="chef">
+  <div class="container">
+
+    <div class="chef__edit" id="{{chef.id}}">
+      <strong>Chef: {{chef.name}}</strong>
+      {% if session.adm == true %}
+        <a href="/admin/chefs/{{chef.id}}/edit">Editar Chef</a>
+      {% endif %}
+    </div>
+
+    <div class="chef__box">
+      <figure class="chef__box--image">
+        <img src="{{chefFile.src}}" alt="{{chef.name}}">
+      </figure>
+
+      <div class="chef__box--infos">
+        <h3 class="chef__box--infos-title">{{chef.name}}</h3>
+
+        {% if chef.total_recipes > 1 %}
+          <p class="chef__box--infos-recipes">{{chef.total_recipes}} Receitas</p>
+        {% elseif chef.total_recipes == 1 %}
+          <p class="chef__box--infos-recipes">{{chef.total_recipes}} Receita</p>
+        {% else  %}
+          <p class="chef__box--infos-recipes">Nenhuma receita</p>
+        {% endif %}
+
+        
+      </div>
+    </div>
+
+    <div class="chef__recipes">
+      {% if chef.total_recipes >= 1 %}
+        <strong>Receitas</strong>
+      {% endif %}
+
+      <div class="chef__recipes--thumb">
+        {% for recipe in recipes %}
+          <div class="chef__recipes--thumb-box">
+            <figure>
+             {% for file in recipeFiles %}
+                {% if file.recipe_id == recipe.id %}
+                    <img src="{{ file.src }}" alt="Imagem de {{ file.name }}">
+                {% endif %}
+              {% endfor %}
+            </figure>
+
+            <div class="chef__recipes--thumb-box-info">
+              <p class="chef__recipes--thumb-box-title">{{recipe.title}}</p>
+              <p class="chef__recipes--thumb-box-author">Por {{recipe.chef_name}}</p>
+              <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+</section>
+
+{% endblock content %}

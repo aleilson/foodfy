@@ -1,0 +1,23 @@
+{% extends "admin/layout.njk" %}
+
+{% block content %}
+
+    <section class="create-chefs">
+        <div class="container">
+            <form class="card form-user" method="POST" action="/admin/users/create">
+                <div class="box_section">
+                    <h3>Criar Usuário</h3>
+
+                    <div class="buttons-create-user">
+                        <button type="submit">Salvar</button>
+                        <button><a href="/admin/users">Cancelar</a></button>
+                    </div>
+                </div>
+
+                {% include 'admin/users/fields.njk' %}
+
+            </form>
+        </div>
+    </section>
+
+{% endblock  content %}

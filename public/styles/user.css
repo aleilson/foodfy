@@ -1,0 +1,180 @@
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-user .item{
+    width: 48%;
+    margin: 10px 0;
+}
+
+.form-user .item span{
+    margin-bottom: 10px;
+    display: block;
+}
+
+.form-user .flex .item:nth-child(2){
+    margin-left: 40px;
+}
+
+.form-user input[name="is_admin"]{
+    width: initial;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+}
+
+.form-user label[for="is_admin"]{
+    font-size: 16px;
+    color: #111;
+    font-weight: bold;
+}
+
+.form-user .buttons-create-user{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.form-user .buttons-create-user button{
+    box-sizing: content-box;
+}
+
+.form-user .buttons-create-user button:nth-child(2){
+    padding: 8px 32px;
+    background: #8A8A8A ;
+    color: #ffffff;
+    border-radius: 4px;
+    width: 20%;
+    font-size: 16px;
+    cursor: pointer;
+    border: 0;
+    display: block;
+    outline: none;
+    box-sizing: content-box;
+    font-weight: bold;
+}
+
+.form-user .buttons-create-user button a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.form-user .box_section{
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+}
+
+.form-user .box_section button {
+    padding: 8px 32px;
+    background: #7159c1;
+    color: #ffffff;
+    border-radius: 4px;
+    width: 15%;
+    font-size: 16px;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    font-weight: bold;
+}
+
+
+/* === Listagem de usuários === */
+
+.listusers .listusers__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.listusers .listusers__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.listusers .listusers__header .button{
+    width: initial;
+    text-decoration: none;
+}
+
+.listusers .listusers__body{
+    margin-top: 72px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 30px;
+}
+
+.listusers .listusers__body .listusers__body--box{
+    width: 100%;
+    max-width: 160px;
+    padding: 10px;
+}
+
+.listusers .listusers__body .listusers__body--box p{
+    padding-top: 5px;
+    color: #777777;
+    font-size: 14px;
+}
+
+.listusers .listusers__body .listusers__body--box .listusers__body--box-button{
+    padding-top: 15px;
+}
+
+.listusers .listusers__body .listusers__body--box .listusers__body--box-button a{
+    text-decoration: none;
+    color: #6558C3 ;
+    font-size: 14px;
+    font-weight: bold;
+}
+.listusers .listusers__body .listusers__body--box .listusers__body--box-button a:hover{
+    opacity: 0.7;
+}
+
+.listusers .listusers__body .listusers__body--box .listusers__body--box-buttonlist {
+    padding-top: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.listusers__body--box-buttonlist #list-delete{
+    margin-top: initial;
+}
+
+
+.listusers .listusers__body .listusers__body--box .listusers__body--box-buttonlist button {
+    background: none;
+    color: #F55A5A ;
+    margin-left: 15px;
+    padding: initial;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.listusers .listusers__body .listusers__body--box .listusers__body--box-buttonlist button:hover {
+    opacity: 0.7;
+}
+
+
+/* === Edição de usuários === */
+.card-edit-user{
+    position: relative;
+}
+
+.card-edit-user #form-delete button{
+    background: #F55A5A;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    padding: 8px 32px;
+    text-decoration: none;
+}
+
+.card-edit-user #form-delete{
+    top: 0;
+}

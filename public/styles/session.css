@@ -1,0 +1,83 @@
+.login input,
+.login textarea {
+  width: 100%;
+  max-width: 100%;
+  outline: none;
+  color: #000;
+  margin: 10px 0;
+  border: 1px solid silver;
+  border-radius: 6px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.login form::placeholder{
+  color: #777777;
+}
+
+.login .header {
+  text-align: center;
+}
+
+.navbar-login {
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.login form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.login .access {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.login .right {
+  justify-content: flex-end;
+
+}
+
+.login .access p a {
+  color: #969696;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.login .access p a:hover {
+  color: #5d5151;
+}
+
+.login .access button[type="submit"],
+a.button{
+  padding: 8px 32px;
+  background: #7159c1;
+  color: #ffffff;
+  border-radius: 4px;
+  /* margin-top: 32px; */
+  width: 30%;
+  font-size: 16px;
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  font-weight: bold;
+}
+
+.input .error {
+  border: 1px solid #e74c3c;
+  border-radius: 4px;
+}
+
+form span{
+  color: 16px;
+  color: var(--color-fonteTitle);
+  font-weight: bold;
+}

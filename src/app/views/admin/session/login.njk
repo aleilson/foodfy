@@ -1,0 +1,37 @@
+{% extends "admin/layout.njk" %}
+
+{% block navbar %}
+    <header class="header">
+        <div class="container">
+            <div class="navbar">
+                <h1 class="navbar__logo navbar-login">
+                    <img src="../../../../assets/logo.png" alt="Foodfy">
+                </h1>
+            </div>
+        </div>
+    </header>
+{% endblock navbar %}
+
+{% block content %}
+
+    <section class="login form">
+        <div class="container">
+            <form class="card" method="POST" action="/admin/login">
+
+                <div class="header">
+                    <h3>Iniciar Sessão</h3>
+                </div>
+
+                {% include 'admin/session/fields.njk' %}
+
+                <div class="item access">
+                    <p><a href="/admin/session/forgot-password">Perdeu a senha ?</a></p>
+
+                    <button class="button" type="submit">Acessar</button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+
+{% endblock  content %}

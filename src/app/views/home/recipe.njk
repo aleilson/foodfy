@@ -1,0 +1,107 @@
+{% extends "layout.njk" %}
+{% block head %}
+    <title>Detalhe Receita - Foodfy</title>
+{% endblock %}
+
+{% block content %}
+    <section class="recipe">
+        <div class="container">
+            <div class="recipe__box">
+                <div class="gallery">
+                    <div class="highlight">
+                        {% if not recipeFiles[0] %}
+                            <img src="http://placehold.it/500x500?text=PRODUTO SEM FOTO" alt="">
+                        {% else %}
+                        <img 
+                            src="{{recipeFiles[0].src}}" 
+                            alt="{{recipeFiles[0].name}}"
+                            onclick="Lightbox.open()"
+                        >
+                        {% endif %}
+
+                        <div class="lightbox-target">
+                            <img src="{{files[0].src}}" alt="{{files[0].name}}">
+                            <a 
+                                href="#" 
+                                class="lightbox-close"
+                                onclick="Lightbox.close()"
+                            >
+                            <i class="material-icons">close</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="gallery-preview">
+                    {% for image in recipeFiles %}
+                        <img 
+                            src="{{image.src}}" 
+                            alt="{{image.name}}"
+                            {% if loop.index0 == 0 %}
+                                class="active"
+                            {% endif %}
+                            onclick="ImageGallery.setImage(event)"
+                        >
+                    {% endfor %}
+                    </div>
+                </div>
+
+                <div class="recipe__box--infos">
+                    <h3 class="recipe__box--infos-title">{{recipe.title}}</h3>
+                    <p class="recipe__box--infos-author">por {{recipe.chef_name}}</p>
+                </div>
+
+                <div class="recipe__box--ingredients">
+                    <div class="recipe__box--ingredients-head">
+                        <strong>Ingredientes</strong>
+                        <button id="show">Esconder</button>
+                    </div>
+                    <div class="recipe__box--ingredients-info hidden">
+                        <ul>
+                        {% for ingredient in recipe.ingredients %}
+                            <li>{{ingredient}}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="recipe__box--preparation">
+                    <div class="recipe__box--preparation-head">
+                        <strong>Modo de preparo</strong>
+                        <button id="show">Esconder</button>
+                    </div>
+                    <div class="recipe__box--preparation-info hidden">
+                        <ul>
+                        {% for prepara in recipe.preparation %}
+                            <li>{{prepara}}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="recipe__box--information">
+                    <div class="recipe__box--information-head">
+                        <strong>Informações adicionais</strong>
+                        <button id="show">Esconder</button>
+                    </div>
+                    <div class="recipe__box--information-info hidden">
+                        <p>{{recipe.information}}</p>
+                    </div>
+                </div>
+
+                <div class="recipe__box--information">
+                    <div class="recipe__box--information-head">
+                        <strong>Criado em:</strong>
+                        <button id="show">Esconder</button>
+                    </div>
+                    <div class="recipe__box--information-info hidden">
+                        <p>{{recipe.created_at}}</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+
+    <script src="/scripts.js"></script>
+{% endblock %}
+

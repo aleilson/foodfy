@@ -1,0 +1,33 @@
+{% extends 'admin/layout.njk' %}
+
+{% block content %}
+<section class="chefs">
+  <div class="container">
+    <div class="chefs__tag">
+      <h3 class="chefs__tag--title">Gerenciar chefs</h3>
+
+      {% if session.adm == true %}
+        <a href="/admin/chefs/create">Novo chef</a>
+      {% endif %}
+    </div>
+    <div class="chefs__thumb">
+      {% for chef in chefs %}
+        <div class="chefs__thumb--card">
+          <figure class="chefs__thumb--card-img">
+            {% for chefFile in chefsFiles %}
+              {% if chefFile.id == chef.file_id %}
+                <img src="{{ chefFile.src }}" alt="{{ chef.name }}">
+              {% endif %}
+            {% endfor %}
+          </figure>
+
+         <div class="chefs__thumb--card-infos">
+            <h4 class="chefs__thumb--card-title">{{chef.name}}</h4>
+            <a class="chefs__thumb--card-details" href="/admin/chefs/{{chef.id}}">Visualizar</a>
+         </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

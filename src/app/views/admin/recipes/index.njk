@@ -1,0 +1,35 @@
+{% extends 'admin/layout.njk' %}
+
+{% block content %}
+<section class="recipes">
+  <div class="container">
+    <div class="recipes__tag">
+      <h3 class="recipes__tag--title">Gerenciar receitas</h3>
+
+      {% if session.adm == true %}
+        <a href="/admin/recipes/create">Nova receita</a>
+      {% endif %}
+    </div>
+    <div class="recipes__thumb">
+      {% for recipe in recipes %}
+        <div class="recipes__thumb--card" id="{{recipe.id}}">
+          <figure class="recipes__thumb--card-img">
+            {% for file in recipeFiles %}
+              {% if file.recipe_id == recipe.id %}
+                <img src="{{file.src}}" alt="{{file.name}}">
+              {% endif %}
+            {% endfor %}
+          </figure>
+
+          <h4 class="recipes__thumb--card-title">{{recipe.title}}</h4>
+          {% if recipe.chef_name %}
+            <p class="recipes__thumb--card-author">por {{recipe.chef_name}}</p>
+          {% endif %}
+          <a class="recipes__thumb--card-details" href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+{% endblock content %}

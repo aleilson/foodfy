@@ -1,0 +1,40 @@
+{% extends "layout.njk" %}
+{% block head %}
+<title>Receitas - Foodfy</title>
+{% endblock %}
+
+{% block content %}
+<section class="recipe">
+    <div class="container">
+        <div class="recipe__filter">
+            <strong class="filtered">Buscando por "{{filter}}"</strong>
+        </div>
+        <div class="recipes__thumb">
+            {% for recipe in recipes %}
+            <div class="recipes__thumb--card" id="{{recipe.id}}">
+                <figure class="recipes__thumb--card-img">
+                    {% for file in recipeFiles %}
+                        {% if file.recipe_id == recipe.id %}
+                            <img src="{{file.src}}" alt="{{file.name}}">
+                        {% endif %}
+                    {% endfor %}
+                </figure>
+
+                <h4 class="recipes__thumb--card-title">{{recipe.title}}</h4>
+                <p class="recipes__thumb--card-author">{{recipe.chef_name}}</p>
+                <a class="recipes__thumb--card-details" href="/recipe/{{recipe.id}}">Visualizar</a>
+            </div>
+            {% endfor %}
+
+            
+        </div>
+        {% if recipes  == 0 %}
+            <div class="recipes__thumb--not-found">
+                <strong>Nenhuma busca relacionada</strong>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<script src="/scripts.js"></script>
+{% endblock %}
